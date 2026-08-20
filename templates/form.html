@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXT MOVE — Career Profile</title>
+<style>
+  :root{
+    --ivory:#FAF9F6;--paper:#F3F1EC;--charcoal:#1C1D1B;--gray:#6B6D67;
+    --gray-light:#9A9C96;--line:#DEDBD2;--blue:#5C7A99;--blue-soft:#E7EDF2;--card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--ivory);color:var(--charcoal);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .shell{max-width:720px;margin:0 auto;padding:56px 24px 100px;}
+  .brand{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+  .progress-wrap{display:flex;align-items:center;gap:10px;margin:28px 0 44px;}
+  .progress-track{flex:1;height:2px;background:var(--line);position:relative;}
+  .progress-fill{height:2px;background:var(--charcoal);transition:width .35s ease;}
+  .progress-label{font-family:ui-monospace,monospace;font-size:11px;color:var(--gray);white-space:nowrap;}
+  .section{display:none;}
+  .section.active{display:block;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .sec-eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-light);margin-bottom:8px;}
+  .sec-title{font-family:Georgia,"Iowan Old Style",serif;font-size:30px;font-weight:400;letter-spacing:-.01em;margin:0 0 40px;}
+  .q{margin-bottom:32px;}
+  .q label{display:block;font-size:15px;font-weight:600;margin-bottom:12px;line-height:1.4;}
+  .q .hint{font-size:12.5px;color:var(--gray);margin-top:-8px;margin-bottom:12px;font-weight:400;}
+  input[type=text],textarea,select{width:100%;border:none;border-bottom:1px solid var(--line);background:transparent;padding:10px 2px;font-size:15px;color:var(--charcoal);font-family:inherit;}
+  textarea{resize:vertical;min-height:60px;line-height:1.5;}
+  input[type=text]:focus,textarea:focus,select:focus{outline:none;border-bottom-color:var(--charcoal);}
+  select{appearance:none;background:transparent;border:1px solid var(--line);padding:10px 12px;border-radius:2px;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{border:1px solid var(--line);padding:9px 16px;border-radius:20px;font-size:13.5px;cursor:pointer;color:var(--gray);background:var(--card);transition:all .15s ease;user-select:none;}
+  .chip:hover{border-color:var(--gray-light);}
+  .chip.selected{background:var(--charcoal);border-color:var(--charcoal);color:var(--ivory);}
+  .chip.multi.selected{background:var(--blue);border-color:var(--blue);}
+  .chip-hint{font-size:11.5px;color:var(--gray-light);margin-top:8px;}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:52px;border-top:1px solid var(--line);padding-top:24px;}
+  button{font-family:inherit;font-size:13.5px;letter-spacing:.02em;cursor:pointer;border-radius:2px;padding:12px 22px;border:1px solid var(--charcoal);}
+  .btn-primary{background:var(--charcoal);color:var(--ivory);}
+  .btn-primary:hover{background:#000;}
+  .btn-primary:disabled{opacity:.5;cursor:default;}
+  .btn-ghost{background:transparent;color:var(--gray);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--gray-light);color:var(--charcoal);}
+  .btn-ghost:disabled{opacity:0;pointer-events:none;}
+
+  #loading, #done, #errorState{display:none;text-align:center;padding:120px 0;}
+  .spinner{width:28px;height:28px;border:2px solid var(--line);border-top-color:var(--charcoal);border-radius:50%;margin:0 auto 22px;animation:spin 0.8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-text{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--gray);letter-spacing:.05em;}
+  .done-eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
+  .done-title{font-family:Georgia,serif;font-size:30px;margin:0 0 16px;}
+  .done-sub{color:var(--gray);font-size:14px;max-width:380px;margin:0 auto 32px;line-height:1.6;}
+  .download-btn{display:inline-block;background:var(--charcoal);color:var(--ivory);padding:14px 30px;border-radius:2px;text-decoration:none;font-size:14px;letter-spacing:.02em;}
+  .download-btn:hover{background:#000;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="brand">NEXT MOVE — Career Profile</div>
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-track"><div class="progress-fill" id="progFill" style="width:25%"></div></div>
+    <div class="progress-label" id="progLabel">Section 1 / 4</div>
+  </div>
+
+  <form id="theForm">
+    <div class="section active" data-sec="1">
+      <div class="sec-eyebrow">Section 01</div>
+      <h2 class="sec-title">Where you are</h2>
+      <div class="q"><label>Your name</label><input type="text" id="name" placeholder="For the report cover"></div>
+      <div class="q"><label>Age range</label>
+        <select id="age"><option value="18-24">18–24</option><option value="25-34">25–34</option><option value="35-44">35–44</option><option value="45-54">45–54</option><option value="55+">55+</option></select>
+      </div>
+      <div class="q"><label>Current occupation</label><input type="text" id="occupation" placeholder="e.g. Marketing coordinator"></div>
+      <div class="q"><label>Education level</label>
+        <select id="education"><option>High school</option><option>Some college</option><option>Bachelor's degree</option><option>Master's degree</option><option>Doctorate</option><option>Self-taught / other</option></select>
+      </div>
+      <div class="q"><label>Years of work experience</label>
+        <select id="experience"><option>0–1 years</option><option>2–4 years</option><option>5–9 years</option><option>10–15 years</option><option>15+ years</option></select>
+      </div>
+      <div class="q"><label>Current industry</label><input type="text" id="industry" placeholder="e.g. Retail, Education, Finance"></div>
+    </div>
+
+    <div class="section" data-sec="2">
+      <div class="sec-eyebrow">Section 02</div>
+      <h2 class="sec-title">Your skills</h2>
+      <div class="q"><label>What are you naturally good at?</label><div class="hint">A sentence or two — no need to be formal.</div><textarea id="goodAt" placeholder="e.g. Explaining complicated things simply, organizing chaotic projects..."></textarea></div>
+      <div class="q"><label>What skills do people compliment you on?</label><textarea id="compliments" placeholder="e.g. My writing, staying calm under pressure..."></textarea></div>
+      <div class="q"><label>What tasks do you dislike?</label><textarea id="dislike" placeholder="e.g. Repetitive data entry, cold calling..."></textarea></div>
+    </div>
+
+    <div class="section" data-sec="3">
+      <div class="sec-eyebrow">Section 03</div>
+      <h2 class="sec-title">Your preferences</h2>
+      <div class="q"><label>Do you prefer working:</label>
+        <div class="chip-row" data-group="teamstyle" data-mode="single">
+          <div class="chip" data-value="Independent">Alone</div><div class="chip" data-value="Small">Small team</div><div class="chip" data-value="Large">Large team</div><div class="chip" data-value="Any">Doesn't matter</div>
+        </div></div>
+      <div class="q"><label>Preferred work environment</label>
+        <div class="chip-row" data-group="environment" data-mode="single">
+          <div class="chip" data-value="Remote">Remote</div><div class="chip" data-value="Hybrid">Hybrid</div><div class="chip" data-value="Office">Office</div><div class="chip" data-value="Any">Doesn't matter</div>
+        </div></div>
+      <div class="q"><label>What matters most to you?</label><div class="chip-hint">Pick up to 3.</div>
+        <div class="chip-row multi" data-group="priorities" data-mode="multi" data-max="3">
+          <div class="chip multi" data-value="Money">Money</div><div class="chip multi" data-value="Freedom">Freedom</div><div class="chip multi" data-value="Stability">Stability</div><div class="chip multi" data-value="Creativity">Creativity</div><div class="chip multi" data-value="Meaning">Meaning</div><div class="chip multi" data-value="Growth">Growth</div>
+        </div></div>
+    </div>
+
+    <div class="section" data-sec="4">
+      <div class="sec-eyebrow">Section 04</div>
+      <h2 class="sec-title">Your goal</h2>
+      <div class="q"><label>What would you ideally like your career to look like?</label><textarea id="idealCareer" placeholder="A few sentences on what you're hoping for."></textarea></div>
+      <div class="q"><label>Desired annual income range</label>
+        <select id="income"><option>Not a priority right now</option><option>Moderate — steady and comfortable</option><option>High — a top priority</option></select>
+      </div>
+      <div class="q"><label>Are you considering changing careers?</label>
+        <div class="chip-row" data-group="changing" data-mode="single">
+          <div class="chip" data-value="Yes">Yes, actively</div><div class="chip" data-value="Maybe">Maybe, exploring</div><div class="chip" data-value="No">No, refining current path</div>
+        </div></div>
+      <div class="q"><label>Anything else you want us to know?</label><textarea id="extra" placeholder="Optional"></textarea></div>
+    </div>
+  </form>
+
+  <div class="nav-row" id="navRow">
+    <button type="button" class="btn-ghost" id="backBtn">Back</button>
+    <button type="button" class="btn-primary" id="nextBtn">Continue</button>
+  </div>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingText">Building your career profile…</div>
+  </div>
+
+  <div id="done">
+    <div class="done-eyebrow">Your Career Clarity Report</div>
+    <div class="done-title">It's ready.</div>
+    <p class="done-sub">Your personalized 14-page report has been generated. Download it below — keep a copy, it won't be regenerated automatically.</p>
+    <a class="download-btn" id="downloadLink" href="#">Download Your Report (PDF)</a>
+  </div>
+
+  <div id="errorState">
+    <div class="done-title">Something went wrong.</div>
+    <p class="done-sub" id="errorText">Please try again in a moment.</p>
+    <button type="button" class="btn-primary" id="retryBtn">Try Again</button>
+  </div>
+
+</div>
+
+<script>
+let currentSection = 1;
+const totalSections = 4;
+const selections = {teamstyle:null, environment:null, priorities:[], changing:null};
+
+document.querySelectorAll('.chip-row').forEach(row=>{
+  const group = row.dataset.group, mode = row.dataset.mode, max = parseInt(row.dataset.max||"1");
+  row.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      const val = chip.dataset.value;
+      if(mode==="single"){
+        row.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+        chip.classList.add('selected'); selections[group]=val;
+      } else {
+        if(chip.classList.contains('selected')){
+          chip.classList.remove('selected'); selections[group]=selections[group].filter(v=>v!==val);
+        } else {
+          if(selections[group].length>=max) return;
+          chip.classList.add('selected'); selections[group].push(val);
+        }
+      }
+    });
+  });
+});
+
+function showSection(n){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelector(`.section[data-sec="${n}"]`).classList.add('active');
+  document.getElementById('progFill').style.width=(n/totalSections*100)+"%";
+  document.getElementById('progLabel').textContent=`Section ${n} / ${totalSections}`;
+  document.getElementById('backBtn').disabled=(n===1);
+  document.getElementById('nextBtn').textContent=(n===totalSections)?"Generate my report":"Continue";
+}
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  if(currentSection<totalSections){ currentSection++; showSection(currentSection); window.scrollTo({top:0,behavior:'smooth'}); }
+  else { submitForm(); }
+});
+document.getElementById('backBtn').addEventListener('click', ()=>{
+  if(currentSection>1){ currentSection--; showSection(currentSection); window.scrollTo({top:0,behavior:'smooth'}); }
+});
+showSection(1);
+
+function collectAnswers(){
+  return {
+    name: document.getElementById('name').value,
+    age: document.getElementById('age').value,
+    occupation: document.getElementById('occupation').value,
+    education: document.getElementById('education').value,
+    experience: document.getElementById('experience').value,
+    industry: document.getElementById('industry').value,
+    goodAt: document.getElementById('goodAt').value,
+    compliments: document.getElementById('compliments').value,
+    dislike: document.getElementById('dislike').value,
+    teamstyle: selections.teamstyle,
+    environment: selections.environment,
+    priorities: selections.priorities,
+    idealCareer: document.getElementById('idealCareer').value,
+    income: document.getElementById('income').value,
+    changing: selections.changing,
+    extra: document.getElementById('extra').value
+  };
+}
+
+const loadingMessages = ["Building your career profile…","Comparing against 15 career paths…","Writing your recommendations…","Laying out your report…"];
+
+async function submitForm(){
+  document.getElementById('theForm').style.display='none';
+  document.getElementById('navRow').style.display='none';
+  document.getElementById('progressWrap').style.display='none';
+  document.getElementById('loading').style.display='block';
+
+  let i=0;
+  const msgEl = document.getElementById('loadingText');
+  const msgInterval = setInterval(()=>{ i=(i+1)%loadingMessages.length; msgEl.textContent=loadingMessages[i]; }, 1800);
+
+  try{
+    const res = await fetch('/api/generate', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(collectAnswers())
+    });
+    const data = await res.json();
+    clearInterval(msgInterval);
+    if(!res.ok) throw new Error(data.error || 'Unknown error');
+
+    document.getElementById('loading').style.display='none';
+    document.getElementById('done').style.display='block';
+    document.getElementById('downloadLink').href = data.download_url;
+  }catch(err){
+    clearInterval(msgInterval);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('errorState').style.display='block';
+    document.getElementById('errorText').textContent = err.message;
+  }
+}
+document.getElementById('retryBtn').addEventListener('click', ()=>{
+  document.getElementById('errorState').style.display='none';
+  document.getElementById('theForm').style.display='block';
+  document.getElementById('navRow').style.display='flex';
+  document.getElementById('progressWrap').style.display='flex';
+});
+</script>
+</body>
+</html>

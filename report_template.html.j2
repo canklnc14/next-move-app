@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEXT MOVE — Career Clarity Report</title>
+<style>
+  @page { size: A4; margin: 0; }
+  *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{margin:0;padding:0;}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1C1D1B;background:#FAF9F6;}
+  :root{
+    --ivory:#FAF9F6;--paper:#F1EFE8;--charcoal:#1C1D1B;--gray:#6B6D67;
+    --gray-light:#9A9C96;--line:#D8D4C8;--blue:#5C7A99;--blue-soft:#E6ECF1;
+  }
+  .page{width:210mm;height:297mm;padding:20mm 18mm;position:relative;page-break-after:always;background:var(--ivory);overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  .eyebrow{font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+  .footer{position:absolute;bottom:14mm;left:18mm;right:18mm;display:table;width:calc(100% - 36mm);font-family:'Courier New',monospace;font-size:9px;color:var(--gray-light);border-top:1px solid var(--line);padding-top:8px;}
+  .footer .l,.footer .r{display:table-cell;}
+  .footer .r{text-align:right;}
+  h1.serif{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:40px;margin:0 0 10px;letter-spacing:-.5px;line-height:1.15;}
+  h2.serif{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:26px;margin:0 0 24px;letter-spacing:-.3px;}
+  .rule{border:none;border-top:1px solid var(--line);margin:22px 0;}
+  .cover{display:table;width:100%;height:100%;}
+  .cover-inner{display:table-cell;vertical-align:middle;}
+  .cover-brand{font-family:'Courier New',monospace;font-size:12px;letter-spacing:5px;color:var(--blue);margin-bottom:40px;}
+  .cover h1{font-family:Georgia,serif;font-weight:400;font-size:58px;line-height:1.05;margin:0 0 18px;letter-spacing:-1px;}
+  .cover .tag{font-size:16px;color:var(--gray);max-width:380px;line-height:1.5;}
+  .cover-name{position:absolute;bottom:24mm;left:18mm;font-family:'Courier New',monospace;font-size:11px;color:var(--gray-light);}
+  .cover-name b{color:var(--charcoal);font-size:13px;}
+  .field-row{display:table;width:100%;margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:10px;}
+  .field-label{display:table-cell;width:38%;font-family:'Courier New',monospace;font-size:10.5px;color:var(--gray);letter-spacing:.5px;}
+  .field-value{display:table-cell;font-size:14px;color:var(--charcoal);}
+  .callout{background:var(--charcoal);color:var(--ivory);padding:26px 28px;margin-top:26px;border-radius:2px;}
+  .callout .cl-label{font-family:'Courier New',monospace;font-size:10px;letter-spacing:3px;color:#9FB4C4;margin-bottom:10px;}
+  .callout .cl-text{font-family:Georgia,serif;font-size:19px;line-height:1.4;}
+  .bar-row{margin-bottom:16px;}
+  .bar-top{display:table;width:100%;margin-bottom:6px;}
+  .bar-name{display:table-cell;font-size:13.5px;}
+  .bar-num{display:table-cell;text-align:right;font-family:'Courier New',monospace;font-size:12px;color:var(--gray);}
+  .bar-track{height:6px;background:var(--line);border-radius:3px;}
+  .bar-fill{height:6px;background:var(--charcoal);border-radius:3px;}
+  .bar-fill.blue{background:var(--blue);}
+  .bar-desc{font-size:11.5px;color:var(--gray);margin-top:5px;line-height:1.5;}
+  .spectrum{margin-bottom:30px;}
+  .spectrum-labels{display:table;width:100%;font-family:'Courier New',monospace;font-size:10.5px;color:var(--gray);margin-bottom:8px;}
+  .spectrum-labels .l{display:table-cell;text-align:left;}
+  .spectrum-labels .r{display:table-cell;text-align:right;}
+  .spectrum-track{height:2px;background:var(--line);position:relative;margin:10px 0 4px;}
+  .spectrum-dot{position:absolute;top:-5px;width:12px;height:12px;border-radius:50%;background:var(--blue);}
+  .match-card{border:1px solid var(--line);padding:22px 24px;margin-bottom:14px;border-radius:2px;}
+  .match-top{display:table;width:100%;}
+  .match-left{display:table-cell;}
+  .match-right{display:table-cell;text-align:right;vertical-align:top;}
+  .match-rank{font-family:'Courier New',monospace;font-size:10px;color:var(--gray-light);letter-spacing:2px;}
+  .match-name{font-family:Georgia,serif;font-size:22px;margin:2px 0 0;}
+  .match-score{font-family:'Courier New',monospace;font-size:26px;color:var(--blue);}
+  .match-score .s{font-size:11px;color:var(--gray-light);}
+  .match-why{font-size:12.5px;color:var(--gray);margin-top:10px;line-height:1.55;}
+  .col2{display:table;width:100%;table-layout:fixed;border-spacing:20px 0;margin-top:6px;}
+  .col2 .c{display:table-cell;width:50%;vertical-align:top;}
+  .list-plain{margin:0;padding-left:0;list-style:none;}
+  .list-plain li{font-size:12.5px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .list-plain li:before{content:"— ";color:var(--gray-light);}
+  .subhead{font-family:'Courier New',monospace;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-light);margin:0 0 12px;}
+  .phase{margin-bottom:26px;}
+  .phase-head{display:table;width:100%;border-bottom:1px solid var(--charcoal);padding-bottom:8px;margin-bottom:12px;}
+  .phase-days{display:table-cell;font-family:'Courier New',monospace;font-size:10.5px;color:var(--blue);}
+  .phase-title{display:table-cell;text-align:right;font-family:Georgia,serif;font-size:18px;}
+  .num-list{counter-reset:item;margin:0;padding:0;list-style:none;}
+  .num-list li{counter-increment:item;font-size:13px;padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--line);}
+  .num-list li:before{content:counter(item);position:absolute;left:0;top:9px;font-family:'Courier New',monospace;font-size:11px;color:var(--blue);border:1px solid var(--blue);width:20px;height:20px;border-radius:50%;text-align:center;line-height:19px;}
+  .final-box{border:1px solid var(--line);padding:22px 24px;margin-bottom:14px;}
+  .final-box .k{font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;color:var(--blue);margin-bottom:6px;}
+  .final-box .v{font-family:Georgia,serif;font-size:19px;}
+  .closing-line{font-family:Georgia,serif;font-style:italic;font-size:15px;color:var(--gray);text-align:center;margin-top:60px;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<div class="page">
+  <div class="cover"><div class="cover-inner">
+    <div class="cover-brand">N E X T&nbsp;&nbsp;M O V E</div>
+    <h1>Personalized<br>Career Clarity<br>Report</h1>
+    <div class="tag">Your strengths. Your direction. Your next move.</div>
+  </div></div>
+  <div class="cover-name">PREPARED FOR<br><b>{{ person_name }}</b></div>
+</div>
+
+<!-- PAGE 2 — EXECUTIVE SUMMARY -->
+<div class="page">
+  <div class="eyebrow">02 — Executive Summary</div>
+  <h2 class="serif">Your Current Position</h2>
+  <div class="field-row"><div class="field-label">CURRENT SITUATION</div><div class="field-value">{{ current_situation }}</div></div>
+  <div class="field-row"><div class="field-label">CAREER GOAL</div><div class="field-value">{{ career_goal }}</div></div>
+  <div class="field-row"><div class="field-label">PRIMARY CHALLENGE</div><div class="field-value">{{ primary_challenge }}</div></div>
+  <div class="field-row"><div class="field-label">TOP PRIORITY</div><div class="field-value">{{ top_priority }}</div></div>
+  <div class="callout">
+    <div class="cl-label">YOUR NEXT MOVE</div>
+    <div class="cl-text">{{ next_move_text }}</div>
+  </div>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">02</div></div>
+</div>
+
+<!-- PAGE 3 — CAREER PROFILE -->
+<div class="page">
+  <div class="eyebrow">03 — Your Career Profile</div>
+  <h2 class="serif">Five Core Dimensions</h2>
+  {% for s in strengths %}
+  <div class="bar-row"><div class="bar-top"><div class="bar-name">{{ s.name }}</div><div class="bar-num">{{ s.value }}</div></div><div class="bar-track"><div class="bar-fill" style="width:{{ s.value }}%"></div></div></div>
+  {% endfor %}
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">03</div></div>
+</div>
+
+<!-- PAGE 4 — STRENGTHS -->
+<div class="page">
+  <div class="eyebrow">04 — Your Strengths</div>
+  <h2 class="serif">What You Lead With</h2>
+  {% for s in strengths %}
+  <div class="bar-row">
+    <div class="bar-top"><div class="bar-name">{{ s.name }}</div><div class="bar-num">{{ s.value }}</div></div>
+    <div class="bar-track"><div class="bar-fill blue" style="width:{{ s.value }}%"></div></div>
+    <div class="bar-desc">{{ s.blurb }}</div>
+  </div>
+  {% endfor %}
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">04</div></div>
+</div>
+
+<!-- PAGE 5 — WORK STYLE -->
+<div class="page">
+  <div class="eyebrow">05 — Your Work Style</div>
+  <h2 class="serif">How You Work Best</h2>
+  <div class="spectrum"><div class="spectrum-labels"><div class="l">INDEPENDENT</div><div class="r">COLLABORATIVE</div></div>
+    <div class="spectrum-track"><div class="spectrum-dot" style="left:{{ indep_pos }}%"></div></div></div>
+  <div class="spectrum"><div class="spectrum-labels"><div class="l">STRUCTURED</div><div class="r">FLEXIBLE</div></div>
+    <div class="spectrum-track"><div class="spectrum-dot" style="left:{{ flex_pos }}%"></div></div></div>
+  <div class="spectrum"><div class="spectrum-labels"><div class="l">SPECIALIST</div><div class="r">GENERALIST</div></div>
+    <div class="spectrum-track"><div class="spectrum-dot" style="left:{{ generalist_pos }}%"></div></div></div>
+  <hr class="rule">
+  <p style="font-size:13.5px;color:var(--gray);line-height:1.7;max-width:440px;">
+  These positions come directly from how you described your preferred way of working — they shape which roles will feel natural versus draining day to day.
+  </p>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">05</div></div>
+</div>
+
+<!-- PAGE 6 — CAREER VALUES -->
+<div class="page">
+  <div class="eyebrow">06 — Your Career Values</div>
+  <h2 class="serif">What You're Optimizing For</h2>
+  {% for cv in career_values %}
+  <div class="bar-row"><div class="bar-top"><div class="bar-name">{{ cv.name }}</div><div class="bar-num">{{ cv.value }}/10</div></div><div class="bar-track"><div class="bar-fill" style="width:{{ cv.value*10 }}%"></div></div></div>
+  {% endfor %}
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">06</div></div>
+</div>
+
+<!-- PAGE 7 — TOP MATCHES -->
+<div class="page">
+  <div class="eyebrow">07 — Career Match</div>
+  <h2 class="serif">Your Top 3 Directions</h2>
+  {% for m in matches %}
+  <div class="match-card">
+    <div class="match-top">
+      <div class="match-left"><div class="match-rank">0{{ loop.index }}</div><div class="match-name">{{ m.name }}</div></div>
+      <div class="match-right"><div class="match-score">{{ m.score }}<span class="s">/100</span></div></div>
+    </div>
+    <div class="match-why">{{ m.why_short }}</div>
+  </div>
+  {% endfor %}
+  <div class="rule"></div>
+  <p style="font-family:'Courier New',monospace;font-size:10.5px;color:var(--gray-light);line-height:1.7;">
+  This score reflects an internal fit framework comparing your profile against the typical demands of each role — not a scientific or clinical assessment.
+  </p>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">07</div></div>
+</div>
+
+<!-- PAGES 8-10 — DEEP DIVES -->
+{% for m in matches %}
+<div class="page">
+  <div class="eyebrow">{{ 7 + loop.index }} — Match 0{{ loop.index }}</div>
+  <h2 class="serif">{{ m.name }}</h2>
+  <div class="subhead">WHY IT FITS</div>
+  <p style="font-size:13px;line-height:1.7;color:var(--charcoal);max-width:460px;">{{ m.why_long }}</p>
+  <div class="col2" style="margin-top:22px;">
+    <div class="c">
+      <div class="subhead">WHAT YOU'LL USE</div>
+      <ul class="list-plain">{% for u in m.uses %}<li>{{ u }}</li>{% endfor %}</ul>
+    </div>
+    <div class="c">
+      <div class="subhead">POTENTIAL CHALLENGES</div>
+      <ul class="list-plain">{% for ch in m.challenges %}<li>{{ ch }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">0{{ 7 + loop.index }}</div></div>
+</div>
+{% endfor %}
+
+<!-- PAGE 11 — SKILLS GAP -->
+<div class="page">
+  <div class="eyebrow">11 — Your Skills Gap</div>
+  <h2 class="serif">Where You Stand</h2>
+  <div class="col2">
+    <div class="c">
+      <div class="subhead">ALREADY HAVE</div>
+      <ul class="list-plain">{% for a in already_have %}<li>{{ a }}</li>{% endfor %}</ul>
+    </div>
+    <div class="c">
+      <div class="subhead">BUILD NEXT</div>
+      <ul class="list-plain">{% for b in build_next %}<li>{{ b }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <p style="font-size:13px;color:var(--gray);line-height:1.7;max-width:460px;">
+  This isn't a starting-from-zero situation — most of what {{ matches[0].name }} requires day to day, you already practice in some form. The gap is tooling and a visible body of work, not raw aptitude.
+  </p>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">11</div></div>
+</div>
+
+<!-- PAGE 12 — 90 DAY ROADMAP -->
+<div class="page">
+  <div class="eyebrow">12 — Your 90-Day Roadmap</div>
+  <h2 class="serif">From Clarity to Action</h2>
+  {% for phase in roadmap %}
+  <div class="phase">
+    <div class="phase-head"><div class="phase-days">{{ phase.days }}</div><div class="phase-title">{{ phase.title }}</div></div>
+    <ul class="list-plain">{% for item in phase.tasks %}<li>{{ item }}</li>{% endfor %}</ul>
+  </div>
+  {% endfor %}
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">12</div></div>
+</div>
+
+<!-- PAGE 13 — FIRST 10 ACTIONS -->
+<div class="page">
+  <div class="eyebrow">13 — Your First 10 Moves</div>
+  <h2 class="serif">Start Here</h2>
+  <ul class="num-list">{% for a in first_actions %}<li>{{ a }}</li>{% endfor %}</ul>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">13</div></div>
+</div>
+
+<!-- PAGE 14 — FINAL DIRECTION -->
+<div class="page">
+  <div class="eyebrow">14 — Final Direction</div>
+  <h2 class="serif">Your Next Move</h2>
+  <div class="final-box"><div class="k">BEST FIT</div><div class="v">{{ final_best }}</div></div>
+  <div class="final-box"><div class="k">SECOND OPTION</div><div class="v">{{ final_second }}</div></div>
+  <div class="final-box"><div class="k">WILDCARD OPTION</div><div class="v">{{ final_wildcard }}</div></div>
+  <div class="final-box"><div class="k">90-DAY FOCUS</div><div class="v" style="font-size:15px;">Build a portfolio and validate career fit before committing fully.</div></div>
+  <div class="closing-line">"Clarity isn't about knowing everything. It's about knowing what to do next."</div>
+  <div class="footer"><div class="l">NEXT MOVE — CAREER CLARITY REPORT</div><div class="r">14</div></div>
+</div>
+
+</body>
+</html>
